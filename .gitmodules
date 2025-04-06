@@ -1,0 +1,12 @@
+[submodule "ntt-data-challenge-accounts"]
+	path = ntt-data-challenge-accounts
+	url = https://github.com/jueltter/ntt-data-challenge-accounts.git
+[submodule "ntt-data-challenge-clients"]
+	path = ntt-data-challenge-clients
+	url = https://github.com/jueltter/ntt-data-challenge-clients.git
+[submodule "ntt-data-challenge-cloud-gateway"]
+	path = ntt-data-challenge-cloud-gateway
+	url = https://github.com/jueltter/ntt-data-challenge-cloud-gateway.git
+[submodule "ntt-data-challenge-eureka-server"]
+	path = ntt-data-challenge-eureka-server
+	url = https://github.com/jueltter/ntt-data-challenge-eureka-server.git
