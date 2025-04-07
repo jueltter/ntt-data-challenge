@@ -1,0 +1,1040 @@
+{
+	"info": {
+		"_postman_id": "3b22d949-4bdf-4011-96e8-17d78f1acfcc",
+		"name": "ntt-data-challenge",
+		"description": "A postman collection to consume an backend application with microservices archituecture.\n\nEnvironment variables\n\nntt-data-challenge-accounts-servername: {{ntt-data-challenge-accounts-servername}}\n\nntt-data-challenge-clients-servername: {{ntt-data-challenge-clients-servername}}\n\nntt-data-challenge-cloud-gateway-servername: {{ntt-data-challenge-cloud-gateway-servername}}",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "12442172"
+	},
+	"item": [
+		{
+			"name": "accounts",
+			"item": [
+				{
+					"name": "api",
+					"item": [
+						{
+							"name": "cuentas",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{ntt-data-challenge-accounts-servername}}/api/cuentas",
+									"host": [
+										"{{ntt-data-challenge-accounts-servername}}"
+									],
+									"path": [
+										"api",
+										"cuentas"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "cuentas",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"numeroCuenta\": \"9000000001\",\r\n    \"tipoCuenta\": \"CORRIENTE\",\r\n    \"saldoInicial\": 1500.50,\r\n    \"estado\": \"TRUE\",\r\n    \"nombreCliente\": \"Paul Atreides\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{ntt-data-challenge-accounts-servername}}/api/cuentas",
+									"host": [
+										"{{ntt-data-challenge-accounts-servername}}"
+									],
+									"path": [
+										"api",
+										"cuentas"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "cuentas/{id}",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"numeroCuenta\": \"9000000001\",\r\n    \"tipoCuenta\": \"CORRIENTE\",\r\n    \"saldoInicial\": 1400.50,\r\n    \"estado\": \"FALSE\",\r\n    \"nombreCliente\": \"Paul Atreides\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{ntt-data-challenge-accounts-servername}}/api/cuentas/:id",
+									"host": [
+										"{{ntt-data-challenge-accounts-servername}}"
+									],
+									"path": [
+										"api",
+										"cuentas",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "11"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "cuentas/{id}",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"estado\": \"TRUE\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{ntt-data-challenge-accounts-servername}}/api/cuentas/:id",
+									"host": [
+										"{{ntt-data-challenge-accounts-servername}}"
+									],
+									"path": [
+										"api",
+										"cuentas",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "11"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "cuentas/{id}",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{ntt-data-challenge-accounts-servername}}/api/cuentas/:id",
+									"host": [
+										"{{ntt-data-challenge-accounts-servername}}"
+									],
+									"path": [
+										"api",
+										"cuentas",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "11"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "movimientos",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{ntt-data-challenge-accounts-servername}}/api/movimientos",
+									"host": [
+										"{{ntt-data-challenge-accounts-servername}}"
+									],
+									"path": [
+										"api",
+										"movimientos"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "movimientos",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"tipoMovimiento\": \"RETIRO\",\r\n    \"valor\": \"-15\",\r\n    \"numeroCuenta\": \"1234567890\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{ntt-data-challenge-accounts-servername}}/api/movimientos",
+									"host": [
+										"{{ntt-data-challenge-accounts-servername}}"
+									],
+									"path": [
+										"api",
+										"movimientos"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "movimientos/{id}",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"tipoMovimiento\": \"DEPOSITO\",\r\n    \"valor\": \"30\",\r\n    \"numeroCuenta\": \"1234567890\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{ntt-data-challenge-accounts-servername}}/api/movimientos/:id",
+									"host": [
+										"{{ntt-data-challenge-accounts-servername}}"
+									],
+									"path": [
+										"api",
+										"movimientos",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "movimientos/{id}",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"valor\": \"-15\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{ntt-data-challenge-accounts-servername}}/api/movimientos/:id",
+									"host": [
+										"{{ntt-data-challenge-accounts-servername}}"
+									],
+									"path": [
+										"api",
+										"movimientos",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "movimientos/{id}",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{ntt-data-challenge-accounts-servername}}/api/movimientos/:id",
+									"host": [
+										"{{ntt-data-challenge-accounts-servername}}"
+									],
+									"path": [
+										"api",
+										"movimientos",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "reportes",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{ntt-data-challenge-accounts-servername}}/api/reportes?cliente-id=C001234567&fecha=2025-01-01,2025-04-06",
+									"host": [
+										"{{ntt-data-challenge-accounts-servername}}"
+									],
+									"path": [
+										"api",
+										"reportes"
+									],
+									"query": [
+										{
+											"key": "cliente-id",
+											"value": "C001234567"
+										},
+										{
+											"key": "fecha",
+											"value": "2025-01-01,2025-04-06"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			],
+			"description": "The folder contains requests for the accounts microservice that directly access it."
+		},
+		{
+			"name": "clients",
+			"item": [
+				{
+					"name": "api",
+					"item": [
+						{
+							"name": "clientes",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{ntt-data-challenge-clients-servername}}/api/clientes",
+									"host": [
+										"{{ntt-data-challenge-clients-servername}}"
+									],
+									"path": [
+										"api",
+										"clientes"
+									],
+									"query": [
+										{
+											"key": "cliente-id",
+											"value": "C001234567",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "clientes",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"identificacion\": \"ID90000001\",\r\n    \"clienteId\": \"C900000001\",\r\n    \"nombre\": \"Ender Wiggin1\",\r\n    \"genero\": \"MALE\",\r\n    \"fechaNacimiento\": \"1985-06-15\",\r\n    \"direccion\": \"Battle School\",\r\n    \"telefono\": \"555-8765\",\r\n    \"clave\": 1234,\r\n    \"estado\": \"TRUE\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{ntt-data-challenge-clients-servername}}/api/clientes",
+									"host": [
+										"{{ntt-data-challenge-clients-servername}}"
+									],
+									"path": [
+										"api",
+										"clientes"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "clientes <minimal data>",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"identificacion\": \"ID90000002\",\r\n    \"clienteId\": \"C900000002\",\r\n    \"nombre\": \"Ender Wiggin2\",\r\n    \"direccion\": \"Battle School\",\r\n    \"telefono\": \"555-8765\",\r\n    \"clave\": 1234,\r\n    \"estado\": \"TRUE\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{ntt-data-challenge-clients-servername}}/api/clientes",
+									"host": [
+										"{{ntt-data-challenge-clients-servername}}"
+									],
+									"path": [
+										"api",
+										"clientes"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "clientes/{id} <minimal data>",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"identificacion\": \"ID90000001\",\r\n    \"clienteId\": \"C900000001\",\r\n    \"nombre\": \"Ender WigginZ\",\r\n    \"direccion\": \"Battle School\",\r\n    \"telefono\": \"555-8765\",\r\n    \"clave\": 1234,\r\n    \"estado\": \"TRUE\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{ntt-data-challenge-clients-servername}}/api/clientes/:id",
+									"host": [
+										"{{ntt-data-challenge-clients-servername}}"
+									],
+									"path": [
+										"api",
+										"clientes",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "11"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "clientes/{id}",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"estado\": \"FALSE\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{ntt-data-challenge-clients-servername}}/api/clientes/:id",
+									"host": [
+										"{{ntt-data-challenge-clients-servername}}"
+									],
+									"path": [
+										"api",
+										"clientes",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "11"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "clientes/{id}",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{ntt-data-challenge-clients-servername}}/api/clientes/:id",
+									"host": [
+										"{{ntt-data-challenge-clients-servername}}"
+									],
+									"path": [
+										"api",
+										"clientes",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "10"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			],
+			"description": "The folder contains requests for the clients microservice that directly access it."
+		},
+		{
+			"name": "cloud-gateway",
+			"item": [
+				{
+					"name": "ntt-data-challenge-clients",
+					"item": [
+						{
+							"name": "api",
+							"item": [
+								{
+									"name": "clientes",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{ntt-data-challenge-cloud-gateway-servername}}/ntt-data-challenge-clients/api/clientes?cliente-id=C001234567",
+											"host": [
+												"{{ntt-data-challenge-cloud-gateway-servername}}"
+											],
+											"path": [
+												"ntt-data-challenge-clients",
+												"api",
+												"clientes"
+											],
+											"query": [
+												{
+													"key": "nombre",
+													"value": "Paul Atreides",
+													"disabled": true
+												},
+												{
+													"key": "cliente-id",
+													"value": "C001234567"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "clientes",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"identificacion\": \"ID90000001\",\r\n    \"clienteId\": \"C900000001\",\r\n    \"nombre\": \"Ender Wiggin1\",\r\n    \"genero\": \"MALE\",\r\n    \"fechaNacimiento\": \"1985-06-15\",\r\n    \"direccion\": \"Battle School\",\r\n    \"telefono\": \"555-8765\",\r\n    \"clave\": 1234,\r\n    \"estado\": \"TRUE\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{ntt-data-challenge-cloud-gateway-servername}}/ntt-data-challenge-clients/api/clientes",
+											"host": [
+												"{{ntt-data-challenge-cloud-gateway-servername}}"
+											],
+											"path": [
+												"ntt-data-challenge-clients",
+												"api",
+												"clientes"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "clientes <minimal data>",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"identificacion\": \"ID90000002\",\r\n    \"clienteId\": \"C900000002\",\r\n    \"nombre\": \"Ender Wiggin2\",\r\n    \"direccion\": \"Battle School\",\r\n    \"telefono\": \"555-8765\",\r\n    \"clave\": 1234,\r\n    \"estado\": \"TRUE\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{ntt-data-challenge-cloud-gateway-servername}}/ntt-data-challenge-clients/api/clientes",
+											"host": [
+												"{{ntt-data-challenge-cloud-gateway-servername}}"
+											],
+											"path": [
+												"ntt-data-challenge-clients",
+												"api",
+												"clientes"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "clientes <minimal data>",
+									"request": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"identificacion\": \"ID90000001\",\r\n    \"clienteId\": \"C900000001\",\r\n    \"nombre\": \"Ender Wiggin3\",\r\n    \"direccion\": \"Battle School\",\r\n    \"telefono\": \"555-8765\",\r\n    \"clave\": 1234,\r\n    \"estado\": \"TRUE\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{ntt-data-challenge-cloud-gateway-servername}}/ntt-data-challenge-clients/api/clientes/12",
+											"host": [
+												"{{ntt-data-challenge-cloud-gateway-servername}}"
+											],
+											"path": [
+												"ntt-data-challenge-clients",
+												"api",
+												"clientes",
+												"12"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "clientes",
+									"request": {
+										"method": "PATCH",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"estado\": \"FALSE\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{ntt-data-challenge-cloud-gateway-servername}}/ntt-data-challenge-clients/api/clientes/12",
+											"host": [
+												"{{ntt-data-challenge-cloud-gateway-servername}}"
+											],
+											"path": [
+												"ntt-data-challenge-clients",
+												"api",
+												"clientes",
+												"12"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "clientes",
+									"request": {
+										"method": "DELETE",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{ntt-data-challenge-cloud-gateway-servername}}/ntt-data-challenge-clients/api/clientes/:id",
+											"host": [
+												"{{ntt-data-challenge-cloud-gateway-servername}}"
+											],
+											"path": [
+												"ntt-data-challenge-clients",
+												"api",
+												"clientes",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "13"
+												}
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						}
+					],
+					"description": "The folder contains requests for the clients microservice accessed through the API Gateway."
+				},
+				{
+					"name": "ntt-data-challenge-accounts",
+					"item": [
+						{
+							"name": "api",
+							"item": [
+								{
+									"name": "cuentas",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{ntt-data-challenge-cloud-gateway-servername}}/ntt-data-challenge-accounts/api/cuentas",
+											"host": [
+												"{{ntt-data-challenge-cloud-gateway-servername}}"
+											],
+											"path": [
+												"ntt-data-challenge-accounts",
+												"api",
+												"cuentas"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "cuentas",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"numeroCuenta\": \"9000000002\",\r\n    \"tipoCuenta\": \"CORRIENTE\",\r\n    \"saldoInicial\": 1500.50,\r\n    \"estado\": \"TRUE\",\r\n    \"nombreCliente\": \"Paul Atreides\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{ntt-data-challenge-cloud-gateway-servername}}/ntt-data-challenge-accounts/api/cuentas",
+											"host": [
+												"{{ntt-data-challenge-cloud-gateway-servername}}"
+											],
+											"path": [
+												"ntt-data-challenge-accounts",
+												"api",
+												"cuentas"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "cuentas/{id}",
+									"request": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"numeroCuenta\": \"9000000002\",\r\n    \"tipoCuenta\": \"CORRIENTE\",\r\n    \"saldoInicial\": 1300.50,\r\n    \"estado\": \"FALSE\",\r\n    \"nombreCliente\": \"Paul Atreides\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{ntt-data-challenge-cloud-gateway-servername}}/ntt-data-challenge-accounts/api/cuentas/:id",
+											"host": [
+												"{{ntt-data-challenge-cloud-gateway-servername}}"
+											],
+											"path": [
+												"ntt-data-challenge-accounts",
+												"api",
+												"cuentas",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "14"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "cuentas/{id}",
+									"request": {
+										"method": "PATCH",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"estado\": \"TRUE\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{ntt-data-challenge-cloud-gateway-servername}}/ntt-data-challenge-accounts/api/cuentas/:id",
+											"host": [
+												"{{ntt-data-challenge-cloud-gateway-servername}}"
+											],
+											"path": [
+												"ntt-data-challenge-accounts",
+												"api",
+												"cuentas",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "14"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "cuentas/{id}",
+									"request": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{ntt-data-challenge-cloud-gateway-servername}}/ntt-data-challenge-accounts/api/cuentas/:id",
+											"host": [
+												"{{ntt-data-challenge-cloud-gateway-servername}}"
+											],
+											"path": [
+												"ntt-data-challenge-accounts",
+												"api",
+												"cuentas",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "14"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "movimientos",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{ntt-data-challenge-cloud-gateway-servername}}/ntt-data-challenge-accounts/api/movimientos",
+											"host": [
+												"{{ntt-data-challenge-cloud-gateway-servername}}"
+											],
+											"path": [
+												"ntt-data-challenge-accounts",
+												"api",
+												"movimientos"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "movimientos",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"tipoMovimiento\": \"RETIRO\",\r\n    \"valor\": \"-15\",\r\n    \"numeroCuenta\": \"9000000002\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{ntt-data-challenge-cloud-gateway-servername}}/ntt-data-challenge-accounts/api/movimientos",
+											"host": [
+												"{{ntt-data-challenge-cloud-gateway-servername}}"
+											],
+											"path": [
+												"ntt-data-challenge-accounts",
+												"api",
+												"movimientos"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "movimientos/{id}",
+									"request": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"tipoMovimiento\": \"DEPOSITO\",\r\n    \"valor\": \"10\",\r\n    \"numeroCuenta\": \"1234567890\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{ntt-data-challenge-cloud-gateway-servername}}/ntt-data-challenge-accounts/api/movimientos/:id",
+											"host": [
+												"{{ntt-data-challenge-cloud-gateway-servername}}"
+											],
+											"path": [
+												"ntt-data-challenge-accounts",
+												"api",
+												"movimientos",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "2"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "movimientos/{id}",
+									"request": {
+										"method": "PATCH",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"valor\": \"15\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{ntt-data-challenge-cloud-gateway-servername}}/ntt-data-challenge-accounts/api/movimientos/:id",
+											"host": [
+												"{{ntt-data-challenge-cloud-gateway-servername}}"
+											],
+											"path": [
+												"ntt-data-challenge-accounts",
+												"api",
+												"movimientos",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "6"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "movimientos/{id}",
+									"request": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{ntt-data-challenge-cloud-gateway-servername}}/ntt-data-challenge-accounts/api/movimientos/:id",
+											"host": [
+												"{{ntt-data-challenge-cloud-gateway-servername}}"
+											],
+											"path": [
+												"ntt-data-challenge-accounts",
+												"api",
+												"movimientos",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "6"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "reportes",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{ntt-data-challenge-cloud-gateway-servername}}/ntt-data-challenge-accounts/api/reportes?cliente-id=C001234567&fecha=2025-01-01,2025-04-06",
+											"host": [
+												"{{ntt-data-challenge-cloud-gateway-servername}}"
+											],
+											"path": [
+												"ntt-data-challenge-accounts",
+												"api",
+												"reportes"
+											],
+											"query": [
+												{
+													"key": "cliente-id",
+													"value": "C001234567"
+												},
+												{
+													"key": "fecha",
+													"value": "2025-01-01,2025-04-06"
+												}
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						}
+					],
+					"description": "The folder contains requests for the accounts microservice accessed through the API Gateway."
+				}
+			],
+			"description": "The folder contains requests for the clients and accounts microservices accessed through the API Gateway.\n\nEureka\n\n[http://localhost:8761/](http://localhost:8761/)\n\nCloud Gateway\n\n[http://localhost:8762/actuator/gateway/routes](http://localhost:8762/actuator/gateway/routes)"
+		}
+	]
+}
