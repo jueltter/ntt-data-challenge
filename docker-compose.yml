@@ -1,0 +1,44 @@
+services:
+  eureka-server:
+    image: samagua/ntt-data-challenge-eureka-server:0.0.1-SNAPSHOT
+    container_name: eureka-server
+    ports:
+      - "8761:8761"
+    environment:
+      - EUREKA_SERVER_PORT=8761
+      # Additional Eureka server configuration can go here
+
+  ntt-data-challenge-cloud-gateway:
+    image: samagua/ntt-data-challenge-cloud-gateway:0.0.1-SNAPSHOT
+    container_name: ntt-data-challenge-cloud-gateway
+    depends_on:
+      - eureka-server
+    environment:
+      # Optionally override the Eureka URL via environment variable
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka-server:8761/eureka/
+    ports:
+      - "8762:8762"
+
+  ntt-data-challenge-clients:
+    image: samagua/ntt-data-challenge-clients:0.0.1-SNAPSHOT
+    pull_policy: if_not_present
+    container_name: ntt-data-challenge-clients
+    depends_on:
+      - eureka-server
+    environment:
+      # Optionally override the Eureka URL via environment variable
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka-server:8761/eureka/
+    ports:
+      - "8080:8080"
+
+  ntt-data-challenge-accounts:
+    image: samagua/ntt-data-challenge-accounts:0.0.1-SNAPSHOT
+    pull_policy: if_not_present
+    container_name: ntt-data-challenge-accounts
+    depends_on:
+      - eureka-server
+    environment:
+      # Optionally override the Eureka URL via environment variable
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka-server:8761/eureka/
+    ports:
+      - "8081:8081"
