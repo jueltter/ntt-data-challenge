@@ -502,7 +502,7 @@
 									"variable": [
 										{
 											"key": "id",
-											"value": "10"
+											"value": "39"
 										}
 									]
 								}
@@ -529,7 +529,7 @@
 										"method": "GET",
 										"header": [],
 										"url": {
-											"raw": "{{ntt-data-challenge-cloud-gateway-servername}}/ntt-data-challenge-clients/api/clientes?cliente-id=C001234567",
+											"raw": "{{ntt-data-challenge-cloud-gateway-servername}}/ntt-data-challenge-clients/api/clientes",
 											"host": [
 												"{{ntt-data-challenge-cloud-gateway-servername}}"
 											],
@@ -546,7 +546,8 @@
 												},
 												{
 													"key": "cliente-id",
-													"value": "C001234567"
+													"value": "C001234567",
+													"disabled": true
 												}
 											]
 										}
@@ -695,7 +696,7 @@
 											"variable": [
 												{
 													"key": "id",
-													"value": "13"
+													"value": "48"
 												}
 											]
 										}
@@ -1035,6 +1036,944 @@
 				}
 			],
 			"description": "The folder contains requests for the clients and accounts microservices accessed through the API Gateway.\n\nEureka\n\n[http://localhost:8761/](http://localhost:8761/)\n\nCloud Gateway\n\n[http://localhost:8762/actuator/gateway/routes](http://localhost:8762/actuator/gateway/routes)"
+		},
+		{
+			"name": "use-cases",
+			"item": [
+				{
+					"name": "clients",
+					"item": [
+						{
+							"name": "clientes <jose-lema>",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"function generateUUID() {\r",
+											"  let dt = new Date().getTime();\r",
+											"  const uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {\r",
+											"    const r = (dt + Math.random() * 16) % 16 | 0;\r",
+											"    dt = Math.floor(dt / 16);\r",
+											"    return (c === 'x' ? r : (r & 0x3 | 0x8)).toString(16);\r",
+											"  });\r",
+											"  return uuid;\r",
+											"}\r",
+											"\r",
+											"console.log(eval(pm.globals.get('generateUUID')));\r",
+											"pm.variables.set('random-uuid', generateUUID());"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"let bodyAsObject = pm.response.json();\r",
+											"if (bodyAsObject.data) {\r",
+											"    pm.environment.set('jose-lema-id', bodyAsObject.data.id);\r",
+											"}\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"identificacion\": \"{{random-uuid}}\",\r\n    \"clienteId\": \"{{random-uuid}}\",\r\n    \"nombre\": \"Jose Lema\",\r\n    \"direccion\": \"Otavalo sn y principal\",\r\n    \"telefono\": \"098254785\",\r\n    \"clave\": \"1234\",\r\n    \"estado\": \"TRUE\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{ntt-data-challenge-cloud-gateway-servername}}/ntt-data-challenge-clients/api/clientes",
+									"host": [
+										"{{ntt-data-challenge-cloud-gateway-servername}}"
+									],
+									"path": [
+										"ntt-data-challenge-clients",
+										"api",
+										"clientes"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "clientes/{jose-lema-id}",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"if (pm.response.json().status === 'success') {\r",
+											"    pm.environment.unset('jose-lema-id');\r",
+											"}"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{ntt-data-challenge-cloud-gateway-servername}}/ntt-data-challenge-clients/api/clientes/:id",
+									"host": [
+										"{{ntt-data-challenge-cloud-gateway-servername}}"
+									],
+									"path": [
+										"ntt-data-challenge-clients",
+										"api",
+										"clientes",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "{{jose-lema-id}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "clientes <marianela-montalvo>",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"function generateUUID() {\r",
+											"  let dt = new Date().getTime();\r",
+											"  const uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {\r",
+											"    const r = (dt + Math.random() * 16) % 16 | 0;\r",
+											"    dt = Math.floor(dt / 16);\r",
+											"    return (c === 'x' ? r : (r & 0x3 | 0x8)).toString(16);\r",
+											"  });\r",
+											"  return uuid;\r",
+											"}\r",
+											"\r",
+											"console.log(eval(pm.globals.get('generateUUID')));\r",
+											"pm.variables.set('random-uuid', generateUUID());"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"let bodyAsObject = pm.response.json();\r",
+											"if (bodyAsObject.data) {\r",
+											"    pm.environment.set('marianela-montalvo-id', bodyAsObject.data.id);\r",
+											"}\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"identificacion\": \"{{random-uuid}}\",\r\n    \"clienteId\": \"{{random-uuid}}\",\r\n    \"nombre\": \"Marianela Montalvo\",\r\n    \"direccion\": \"Amazonas y NNUU\",\r\n    \"telefono\": \"097548965\",\r\n    \"clave\": \"5678\",\r\n    \"estado\": \"TRUE\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{ntt-data-challenge-cloud-gateway-servername}}/ntt-data-challenge-clients/api/clientes",
+									"host": [
+										"{{ntt-data-challenge-cloud-gateway-servername}}"
+									],
+									"path": [
+										"ntt-data-challenge-clients",
+										"api",
+										"clientes"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "clientes/{marianela-montalvo-id}",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"if (pm.response.json().status === 'success') {\r",
+											"    pm.environment.unset('marianela-montalvo-id');\r",
+											"}"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{ntt-data-challenge-cloud-gateway-servername}}/ntt-data-challenge-clients/api/clientes/:id",
+									"host": [
+										"{{ntt-data-challenge-cloud-gateway-servername}}"
+									],
+									"path": [
+										"ntt-data-challenge-clients",
+										"api",
+										"clientes",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "{{marianela-montalvo-id}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "clientes <juan-osorio>",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"function generateUUID() {\r",
+											"  let dt = new Date().getTime();\r",
+											"  const uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {\r",
+											"    const r = (dt + Math.random() * 16) % 16 | 0;\r",
+											"    dt = Math.floor(dt / 16);\r",
+											"    return (c === 'x' ? r : (r & 0x3 | 0x8)).toString(16);\r",
+											"  });\r",
+											"  return uuid;\r",
+											"}\r",
+											"\r",
+											"console.log(eval(pm.globals.get('generateUUID')));\r",
+											"pm.variables.set('random-uuid', generateUUID());"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"let bodyAsObject = pm.response.json();\r",
+											"if (bodyAsObject.data) {\r",
+											"    pm.environment.set('juan-osorio-id', bodyAsObject.data.id);\r",
+											"}\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"identificacion\": \"{{random-uuid}}\",\r\n    \"clienteId\": \"{{random-uuid}}\",\r\n    \"nombre\": \"Juan Osorio\",\r\n    \"direccion\": \"13 junio y Equinoccial\",\r\n    \"telefono\": \"098874587\",\r\n    \"clave\": \"1245\",\r\n    \"estado\": \"TRUE\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{ntt-data-challenge-cloud-gateway-servername}}/ntt-data-challenge-clients/api/clientes",
+									"host": [
+										"{{ntt-data-challenge-cloud-gateway-servername}}"
+									],
+									"path": [
+										"ntt-data-challenge-clients",
+										"api",
+										"clientes"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "clientes/{juan-osorio-id}",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"if (pm.response.json().status === 'success') {\r",
+											"    pm.environment.unset('juan-osorio-id');\r",
+											"}"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{ntt-data-challenge-cloud-gateway-servername}}/ntt-data-challenge-clients/api/clientes/:id",
+									"host": [
+										"{{ntt-data-challenge-cloud-gateway-servername}}"
+									],
+									"path": [
+										"ntt-data-challenge-clients",
+										"api",
+										"clientes",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "{{juan-osorio-id}}"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"packages": {},
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"packages": {},
+								"exec": [
+									""
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "accounts",
+					"item": [
+						{
+							"name": "cuentas <478758>",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"let bodyAsObject = pm.response.json();\r",
+											"if (bodyAsObject.data) {\r",
+											"    pm.environment.set('478758-id', bodyAsObject.data.id);\r",
+											"}"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"numeroCuenta\": \"478758\",\r\n    \"tipoCuenta\": \"AHORROS\",\r\n    \"saldoInicial\": 2000,\r\n    \"estado\": \"TRUE\",\r\n    \"nombreCliente\": \"Jose Lema\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{ntt-data-challenge-cloud-gateway-servername}}/ntt-data-challenge-accounts/api/cuentas",
+									"host": [
+										"{{ntt-data-challenge-cloud-gateway-servername}}"
+									],
+									"path": [
+										"ntt-data-challenge-accounts",
+										"api",
+										"cuentas"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "cuentas/{478758-id}",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"if (pm.response.json().status === 'success') {\r",
+											"    pm.environment.unset('478758-id');\r",
+											"}"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{ntt-data-challenge-cloud-gateway-servername}}/ntt-data-challenge-accounts/api/cuentas/:id",
+									"host": [
+										"{{ntt-data-challenge-cloud-gateway-servername}}"
+									],
+									"path": [
+										"ntt-data-challenge-accounts",
+										"api",
+										"cuentas",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "{{478758-id}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "cuentas <225487>",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"let bodyAsObject = pm.response.json();\r",
+											"if (bodyAsObject.data) {\r",
+											"    pm.environment.set('225487-id', bodyAsObject.data.id);\r",
+											"}"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"numeroCuenta\": \"225487\",\r\n    \"tipoCuenta\": \"CORRIENTE\",\r\n    \"saldoInicial\": 100,\r\n    \"estado\": \"TRUE\",\r\n    \"nombreCliente\": \"Marianela Montalvo\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{ntt-data-challenge-cloud-gateway-servername}}/ntt-data-challenge-accounts/api/cuentas",
+									"host": [
+										"{{ntt-data-challenge-cloud-gateway-servername}}"
+									],
+									"path": [
+										"ntt-data-challenge-accounts",
+										"api",
+										"cuentas"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "cuentas/{225487-id}",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"if (pm.response.json().status === 'success') {\r",
+											"    pm.environment.unset('225487-id');\r",
+											"}"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{ntt-data-challenge-cloud-gateway-servername}}/ntt-data-challenge-accounts/api/cuentas/:id",
+									"host": [
+										"{{ntt-data-challenge-cloud-gateway-servername}}"
+									],
+									"path": [
+										"ntt-data-challenge-accounts",
+										"api",
+										"cuentas",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "{{225487-id}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "cuentas <495878>",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"let bodyAsObject = pm.response.json();\r",
+											"if (bodyAsObject.data) {\r",
+											"    pm.environment.set('495878-id', bodyAsObject.data.id);\r",
+											"}"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"numeroCuenta\": \"495878\",\r\n    \"tipoCuenta\": \"AHORROS\",\r\n    \"saldoInicial\": 0,\r\n    \"estado\": \"TRUE\",\r\n    \"nombreCliente\": \"Juan Osorio\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{ntt-data-challenge-cloud-gateway-servername}}/ntt-data-challenge-accounts/api/cuentas",
+									"host": [
+										"{{ntt-data-challenge-cloud-gateway-servername}}"
+									],
+									"path": [
+										"ntt-data-challenge-accounts",
+										"api",
+										"cuentas"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "cuentas/{495878-id}",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"if (pm.response.json().status === 'success') {\r",
+											"    pm.environment.unset('495878-id');\r",
+											"}"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{ntt-data-challenge-cloud-gateway-servername}}/ntt-data-challenge-accounts/api/cuentas/:id",
+									"host": [
+										"{{ntt-data-challenge-cloud-gateway-servername}}"
+									],
+									"path": [
+										"ntt-data-challenge-accounts",
+										"api",
+										"cuentas",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "{{495878-id}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "cuentas <496825>",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"let bodyAsObject = pm.response.json();\r",
+											"if (bodyAsObject.data) {\r",
+											"    pm.environment.set('496825-id', bodyAsObject.data.id);\r",
+											"}"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"packages": {},
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"numeroCuenta\": \"496825\",\r\n    \"tipoCuenta\": \"AHORROS\",\r\n    \"saldoInicial\": 540,\r\n    \"estado\": \"TRUE\",\r\n    \"nombreCliente\": \"Marianela Montalvo\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{ntt-data-challenge-cloud-gateway-servername}}/ntt-data-challenge-accounts/api/cuentas",
+									"host": [
+										"{{ntt-data-challenge-cloud-gateway-servername}}"
+									],
+									"path": [
+										"ntt-data-challenge-accounts",
+										"api",
+										"cuentas"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "cuentas/{496825-id}",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"if (pm.response.json().status === 'success') {\r",
+											"    pm.environment.unset('496825-id');\r",
+											"}"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{ntt-data-challenge-cloud-gateway-servername}}/ntt-data-challenge-accounts/api/cuentas/:id",
+									"host": [
+										"{{ntt-data-challenge-cloud-gateway-servername}}"
+									],
+									"path": [
+										"ntt-data-challenge-accounts",
+										"api",
+										"cuentas",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "{{496825-id}}"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "other-account",
+					"item": [
+						{
+							"name": "cuentas <585545>",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"let bodyAsObject = pm.response.json();\r",
+											"if (bodyAsObject.data) {\r",
+											"    pm.environment.set('585545-id', bodyAsObject.data.id);\r",
+											"}"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"numeroCuenta\": \"585545\",\r\n    \"tipoCuenta\": \"CORRIENTE\",\r\n    \"saldoInicial\": 1000,\r\n    \"estado\": \"TRUE\",\r\n    \"nombreCliente\": \"Jose Lema\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{ntt-data-challenge-cloud-gateway-servername}}/ntt-data-challenge-accounts/api/cuentas",
+									"host": [
+										"{{ntt-data-challenge-cloud-gateway-servername}}"
+									],
+									"path": [
+										"ntt-data-challenge-accounts",
+										"api",
+										"cuentas"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "cuentas/{585545-id}",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"if (pm.response.json().status === 'success') {\r",
+											"    pm.environment.unset('585545-id');\r",
+											"}"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{ntt-data-challenge-cloud-gateway-servername}}/ntt-data-challenge-accounts/api/cuentas/:id",
+									"host": [
+										"{{ntt-data-challenge-cloud-gateway-servername}}"
+									],
+									"path": [
+										"ntt-data-challenge-accounts",
+										"api",
+										"cuentas",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "{{585545-id}}"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "account-movements",
+					"item": [
+						{
+							"name": "movimientos",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{ntt-data-challenge-cloud-gateway-servername}}/ntt-data-challenge-accounts/api/movimientos",
+									"host": [
+										"{{ntt-data-challenge-cloud-gateway-servername}}"
+									],
+									"path": [
+										"ntt-data-challenge-accounts",
+										"api",
+										"movimientos"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "movimientos",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"tipoMovimiento\": \"RETIRO\",\r\n    \"valor\": \"540\",\r\n    \"numeroCuenta\": \"496825\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{ntt-data-challenge-cloud-gateway-servername}}/ntt-data-challenge-accounts/api/movimientos",
+									"host": [
+										"{{ntt-data-challenge-cloud-gateway-servername}}"
+									],
+									"path": [
+										"ntt-data-challenge-accounts",
+										"api",
+										"movimientos"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "movimientos/{id}",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{ntt-data-challenge-cloud-gateway-servername}}/ntt-data-challenge-accounts/api/movimientos/:id",
+									"host": [
+										"{{ntt-data-challenge-cloud-gateway-servername}}"
+									],
+									"path": [
+										"ntt-data-challenge-accounts",
+										"api",
+										"movimientos",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "4"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
 		}
 	]
 }
